@@ -8,7 +8,10 @@ theme('DarkTeal4')
 def imp_escala(x):
     txt = ''
     for i in x:
-        txt = txt + f'{i} '
+        if i == x[-1]:
+            txt = txt + f'{i}'
+        else:
+            txt = txt + f'{i} - '
     return txt
 
 def escala():
@@ -47,6 +50,8 @@ def escala():
                 esc_menorH_txt = imp_escala(back_tom.Escala(dados['tom']).menorHarmonica())
                 menorH.update(f'Menor Harmonica: {esc_menorH_txt}')
                 
+                tom = w_esc.find_element('tom')
+                tom.update('')
                 w = w_esc.find_element('aviso')
                 w.update('')
                 w_esc.refresh()
@@ -55,8 +60,25 @@ def escala():
                 w_esc.close()
                 break
         except ValueError:
+            crom = w_esc.find_element('escala_crom')
+            crom.update(f'Cromatica: ')
+
+            maior = w_esc.find_element('escalaMaior')
+            maior.update(f'Maior:')
+
+            menorN = w_esc.find_element('escalaMenorN')
+            menorN.update(f'Menor Natural: ')
+
+            menorM = w_esc.find_element('escalaMenorM')
+            menorM.update(f'Menor Melodica:')
+
+            menorH = w_esc.find_element('escalaMenorH')
+            menorH.update(f'Menor Harmonica:')
+
             w = w_esc.find_element('aviso')
             w.update('Digite uma nota musical válida!')
+            tom = w_esc.find_element('tom')
+            tom.update('')
             w_esc.refresh()
             pass
 
