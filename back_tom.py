@@ -3,16 +3,20 @@ class Escala:
         tom = tom.upper()
         self.CROM = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B']
                     # 0   1    2   3    4   5   6    7    8   9   10   11 
+        self.CROM_EXTENSO = ['Dó','Dó#' 'Ré','Ré#', 'Mi', 'Fá','Fá#', 'Sol','Sol#', 'Lá','Lá#', 'Si']
+
         if tom in self.CROM:
             self.tom = tom   
         self.grau = self.CROM.index(tom)
         self.escalaTom = []
+        self.escalaExtensa = []
         self.__intevalos = {
             'Maior':    [0,2,4,5,7,9,11],
             'Natural':  [0,2,3,5,7,8,10], 
             'Harmonica':[0,2,3,5,7,8,11], 
             'Melodica': [0,2,3,5,7,9,11]
         }
+        
     def escalaDoTom(self):
         while len(self.escalaTom) != 12:
             if self.grau == 11:
@@ -43,6 +47,11 @@ class Escala:
             menorMelodica.append(self.escalaDoTom()[i])
         return menorMelodica
 
+    def nota_extensa(self):
+         for i in range(len(self.escalaDoTom())):
+            self.escalaExtensa.append(i)
+
+
 class CampoHarmonico(Escala):
     def __init__(self, tom: str) -> None:
         super().__init__(tom)
@@ -72,9 +81,3 @@ class CampoHarmonico(Escala):
         for i,j in zip(self.menorMelodica(),self.campo['Melodico']):
             menorMelodico.append(i+j)
         return menorMelodico
-
-
-class Acorde(Escala):
-    def __init__(self, tom: str) -> None:
-        super().__init__(tom)
-        
