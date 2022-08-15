@@ -74,14 +74,7 @@ class CampoHarmonico(Escala):
         return menorMelodico
 
 
-class ModosGregos(Escala):
-    def __init__(self, tom: str) -> None:
-        super().__init__(tom)
-
 class Acorde(Escala):
     def __init__(self, tom: str) -> None:
         super().__init__(tom)
-
-
-if __name__ == '__main__':
-    pass
+        

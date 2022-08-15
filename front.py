@@ -1,23 +1,23 @@
-from ast import main
-import tkinter as tk
-from tkinter import ttk
-from back import Escala, CampoHarmonico
-from commands import *
+import PySimpleGUI as sg
+import commands as cm
 
-root = tk.Tk()
+sg.theme("DarkTeal4")
 
-root.title('Me de o Tom')
-tabControl = ttk.Notebook(root)
-tab1 = ttk.Frame(tabControl)
-tab2 = ttk.Frame(tabControl)
+def myApp():
+    layout = [
+    [sg.Text('      AppMusical!  ')],
+    [sg.Button('Escala', s=(14,1)), sg.Text()], 
+    [sg.Button('Campo Harmonico',s=(14,1))],
+    [sg.Button('Sair',s=(14,1))]
+    ]
+    w1 = sg.Window(title='Me de o Tom', layout=layout, size=(150,180))
+    while True:
+        evento, dados = w1.read()
+        if evento == 'Escala':
+            cm.escala()
+        elif evento == 'Campo Harmonico':
+            cm.cmHarmonico()
 
-tabControl.add(tab1, text='Escalas')
-tabControl.add(tab2, text='Campo Harmonico')
-tabControl.pack(expand=1,fill='both')
-ttk.Label(tab1)
-ttk.Label(tab2)
-
-bt1 = tk.Button(tab1, text='Escala')
-bt1.pack(side=tk.LEFT)
-
-root.mainloop()
+        elif evento == sg.WIN_CLOSED or evento == 'Sair':
+            break
+myApp()
