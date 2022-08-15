@@ -18,10 +18,7 @@ def myApp():
     frame_1 = [[sg.Frame('AppMusical', coluna_1)]]
     frame_2 = [[sg.Frame('Opções', coluna_2, element_justification='center')]]
     
-    layout = [[sg.Column(frame_1 ),sg.Column(frame_2)],
-    []
-    
-    ]
+    layout = [[sg.Column(frame_1 ),sg.Column(frame_2)]]
     w1 = sg.Window(title='Me de o Tom', layout=layout, size=(400,180),auto_size_buttons=True)
     while True:
         evento, dados = w1.read()

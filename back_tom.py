@@ -1,10 +1,12 @@
 class Escala:
+    '''
+    Classe que cria todas as escalas a partir de um tom indicado pelo usuário
+    '''
     def __init__(self, tom:str) -> None:
         tom = tom.upper()
         self.CROM = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B']
                     # 0   1    2   3    4   5   6    7    8   9   10   11 
         self.CROM_EXTENSO = ['Dó','Dó#' 'Ré','Ré#', 'Mi', 'Fá','Fá#', 'Sol','Sol#', 'Lá','Lá#', 'Si']
-
         if tom in self.CROM:
             self.tom = tom   
         self.grau = self.CROM.index(tom)
@@ -16,7 +18,7 @@ class Escala:
             'Harmonica':[0,2,3,5,7,8,11], 
             'Melodica': [0,2,3,5,7,9,11]
         }
-        
+
     def escalaDoTom(self):
         while len(self.escalaTom) != 12:
             if self.grau == 11:
@@ -53,6 +55,10 @@ class Escala:
 
 
 class CampoHarmonico(Escala):
+    '''
+    Classe que herda de Escala e cria os campos harmonicos com base nas 
+    escalas e no tom informado pelo usuário
+    '''
     def __init__(self, tom: str) -> None:
         super().__init__(tom)
         self.campo = {
